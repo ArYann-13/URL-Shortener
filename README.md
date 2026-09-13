@@ -2,7 +2,7 @@
 
 A full-stack URL shortener built with Node.js, Express, MongoDB, and Redis — featuring custom Base62 encoding, cache-aside caching, rate limiting, click analytics, and custom aliases.
 
-![App Dashboard](frontend\src\assets\image.png)
+![App Dashboard](frontend/src/assets/image.png)
 
 ---
 
