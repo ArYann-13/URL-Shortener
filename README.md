@@ -17,7 +17,7 @@ A full-stack URL shortener built with Node.js, Express, MongoDB, and Redis — f
 - **Cache-aside caching** — redirect lookups check Redis first and fall back to MongoDB on a cache miss, repopulating the cache afterward. Significantly reduces average redirect latency.
 - **Bidirectional caching** — both `shortCode → originalUrl` and `originalUrl → shortCode` are cached, keeping both the redirect and duplicate-check paths fast.
 - **Duplicate detection** — shortening the same long URL twice returns the existing short code instead of creating a new entry.
-- **URL validation & basic SSRF protection** — rejects malformed URLs, non-http(s) protocols and looping os shortUrl.
+- **URL validation & basic SSRF protection** — rejects malformed URLs, non-http(s) protocols.
 - **Loop prevention** — blocks shortening a URL that already points back to this service.
 - **Custom aliases** — users can choose their own short code instead of an auto-generated one.
 - **Rate limiting** — Redis-backed request limiting on the shorten endpoint to prevent abuse.
@@ -182,9 +182,9 @@ Rate limited to 20 requests per IP per 15-minute window.
 
 Redirects to the original URL. Returns `404` if not found, `410` if expired.
 
-### `GET /stats?input=<shortUrl-or-originalUrl>`
+### `GET /stats?input=<shortUrl>`
 
-Look up click stats by either the short URL or the original URL.
+Look up click stats by short URL.
 
 **Response:**
 ```json
@@ -209,11 +209,11 @@ Look up click stats by either the short URL or the original URL.
 ## Known Limitations / Future Improvements
 
 - No user accounts — links aren't currently associated with a user, so there's no "my links" dashboard.
-- SSRF protection blocks known private IP ranges and hostnames but doesn't resolve DNS to catch a public domain pointing at a private IP.
+- SSRF protection doesn'tblocks known private IP ranges and hostnames and resolve DNS to catch a public domain pointing at a private IP.
 - Free-tier hosting (Render) spins down after inactivity, causing a cold-start delay (~30-60s) on the first request after idling.
 
 ---
 
 ## License
 
-MIT
+Made by Aryan
