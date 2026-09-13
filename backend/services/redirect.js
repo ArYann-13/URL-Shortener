@@ -5,12 +5,7 @@ const redisClient = require('../config/redisClient');
 const CACHE_TTL = 60 * 60 * 24; // 24 hours
 const redirectToOriginalUrl = async (req, res) => {
     try {
-        // const { urlId } = req.params;                    // ✅ matches route /:urlId
-        // const url = await Url.findOne({ shortUrl: urlId }); // ✅ query DB by shortUrl field
-        // if (!url) {
-        //     return res.status(404).json({ error: 'URL not found' });
-        // }
-        // res.redirect(url.originalUrl);
+       
 
         const { shortUrl } = req.params;
 
